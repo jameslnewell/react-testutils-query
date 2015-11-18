@@ -1,6 +1,6 @@
 # react-testutils-query
 
-Utility functions for retrieving elements from within a React VDOM tree.
+Utility functions for retrieving elements from within a React virtual-dom tree.
 
 ## Installation
 
