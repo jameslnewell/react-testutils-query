@@ -40,7 +40,7 @@ const nav = $(Nav, tree);
 
 ## Methods
 
-### $(selector, tree)
+### $(selector : string, tree : element) : element | null
 
 Return the first element that matches the selection criteria.
 
