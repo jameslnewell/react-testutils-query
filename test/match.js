@@ -50,6 +50,15 @@ describe('react-testutils-query', () => {
       expect(match('.footer')(<button className="012345"/>)).to.be.equal(false);
     });
 
+    it('should not match an element with no class name', () => {
+      expect(match('.footer')(<button/>)).to.be.equal(false);
+    });
+
+    it('should not match a node', () => {
+      expect(match('.footer')('hello')).to.be.equal(false);
+    });
+
+
     it('should match an element with multiple criteria', () => {
       expect(match('button#012345.foo')(<button id="012345" className="foo"/>)).to.be.equal(true);
     });

@@ -40,12 +40,12 @@ const nav = $(Nav, tree);
 
 ## Methods
 
-### $(selector : string, tree : element) : element | null
+### $(selector : string, element : element) : element | null
 
 Return the first element that matches the selection criteria.
 
 - `selector` - A CSS-like selector or a component class
-- `tree`- A React virtual-dom tree
+- `element` - A React virtual-dom element
 
 ## License
 

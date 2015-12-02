@@ -1,7 +1,7 @@
 {
   "name": "react-testutils-query",
   "description": "Utility functions for retrieving elements from within a React virtual-dom tree.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "dependencies": {
     "parse-selector": "^1.0.0"
   },
@@ -11,19 +11,20 @@
     "babel-preset-react": "^6.1.18",
     "chai": "^3.4.1",
     "eslint": "^1.9.0",
-    "eslint-config-jameslnewell": "^0.2.1"
+    "eslint-config-jameslnewell": "^0.2.1",
+    "react": "^0.14.3"
   },
   "peerDependencies": {
-    "react-addons-test-utils": ">=0.14.0"
+    "react": ">=0.14.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git remote add origin git@github.com:jameslnewell/react-testutils-query.git"
   },
   "scripts": {
     "lint": "eslint test/*.js",
     "test": "mocha --compilers js:babel-core/register",
     "test.watch": "mocha --watch --compilers js:babel-core/register"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git remote add origin git@github.com:jameslnewell/react-testutils-query.git"
   },
   "license": "MIT"
 }
