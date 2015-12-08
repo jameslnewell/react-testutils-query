@@ -1,8 +1,8 @@
 import React from 'react';
 import {expect} from 'chai';
-import query from '..';
+import $ from '..';
 
-const tree = (
+const element = (
   <header>
     <h1>React TestUtils Query</h1>
     <button>Use now!</button>
@@ -12,8 +12,9 @@ const tree = (
 describe('react-testutils-query', () => {
 
   it('should find an element', () => {
-    const element = query('button', tree);
-    expect(element).to.deep.equal(<button>Use now!</button>);
+    const el = $('button', element);
+    expect(el.length).to.equal(1);
+    expect(el.get(0)).to.deep.equal(<button>Use now!</button>);
   });
 
 });
