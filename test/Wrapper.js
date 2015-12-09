@@ -30,9 +30,9 @@ describe('Wrapper', () => {
 
   describe('.hasProp()', () => {
 
-    it('should return true when there are no elements', () => {
+    it('should return false when there are no elements', () => {
       const el = new Wrapper([]);
-      expect(el.hasProp('disabled')).to.be.true;
+      expect(el.hasProp('disabled')).to.be.false;
     });
 
     it('should return false when the prop is not present', () => {
@@ -69,9 +69,9 @@ describe('Wrapper', () => {
 
     describe('=> when there are no elements', () => {
 
-      it('should return true when there are no elements', () => {
+      it('should return false when there are no elements', () => {
         const el = new Wrapper([]);
-        expect(el.hasClass('hero')).to.be.true;
+        expect(el.hasClass('hero')).to.be.false;
       });
 
     });

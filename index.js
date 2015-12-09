@@ -1,6 +1,8 @@
-var Wrapper = require('./lib/Wrapper');
-var queryAll = require('./lib/queryAll');
-var matchSelector = require('./lib/matchSelector');
+'use strict';
+
+const Wrapper = require('./lib/Wrapper');
+const queryAll = require('./lib/queryAll');
+const matchSelector = require('./lib/matchSelector');
 
 /**
  * Get query object

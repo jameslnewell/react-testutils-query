@@ -12,6 +12,7 @@ const header = (
 describe('react-testutils-query', () => {
 
   it('should find an element', () => {
+
     const buttons = $(header).find('button');
     expect(buttons.length).to.equal(1);
     expect(buttons.hasText('Use now!')).to.be.true;
