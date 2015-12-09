@@ -1,7 +1,7 @@
 {
   "name": "react-testutils-query",
   "description": "Utility functions for retrieving elements from within a React virtual-dom tree.",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "dependencies": {
     "parse-selector": "^1.0.0"
   },
