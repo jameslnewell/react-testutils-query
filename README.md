@@ -4,7 +4,7 @@ Utility functions for retrieving elements from within a React virtual-dom tree.
 
 ## Installation
 
-    npm install --save react-testutils-query
+    npm install --save-dev react-testutils-query
 
 ## Usage
 
