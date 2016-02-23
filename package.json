@@ -1,9 +1,13 @@
 {
   "name": "react-testutils-query",
-  "description": "Utility functions for retrieving elements from within a React virtual-dom tree.",
-  "version": "0.5.1",
+  "description": "Utility functions for accessing elements within a React Virtual-DOM tree.",
+  "main": "./dist/index.js",
+  "version": "0.6.0",
+  "repository": {
+    "type": "git",
+    "url": "git remote add origin git@github.com:jameslnewell/react-testutils-query.git"
+  },
   "dependencies": {
-    "parse-selector": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.1.21",
@@ -11,20 +15,20 @@
     "babel-preset-react": "^6.1.18",
     "chai": "^3.4.1",
     "eslint": "^1.9.0",
-    "eslint-config-jameslnewell": "^0.2.1",
-    "react": "^0.14.3"
+    "eslint-config-jameslnewell": "^0.4.3",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
   },
   "peerDependencies": {
-    "react": ">=0.14.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git remote add origin git@github.com:jameslnewell/react-testutils-query.git"
+    "react": ">=0.14.0",
+    "react-dom": ">=0.14.0"
   },
   "scripts": {
-    "lint": "eslint test/*.js",
+    "lint": "eslint src/ test/",
+    "build": "babel src/ -d dist/ -s",
     "test": "mocha --compilers js:babel-core/register --require test/boot.js",
-    "test.watch": "npm run test -- --watch"
+    "test.watch": "npm run test -- --watch",
+    "prepublish": "npm run lint && npm run test"
   },
   "license": "MIT"
 }
