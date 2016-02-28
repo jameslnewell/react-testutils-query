@@ -2,34 +2,59 @@
 import React from 'react';
 import assert from 'assert';
 import $ from '..';
+import classNames from 'classnames';
+
+const options = {
+  red: 'Red',
+  green: 'Green',
+  blue: 'Blue'
+};
+
+const option = 'blue';
 
 const form = $(
   <form>
 
     <div id="fav-color">
       <label>Favourite color:</label>
-      <ol className="list list--color">
-        <li className="list__item">
-          <label><input type="radio" value="red"/> Red</label>
-        </li>
-        <li className="list__item">
-          <label><input type="radio" value="green"/> Green</label>
-        </li>
-        <li className="list__item">
-          <label><input type="radio" value="blue" defaultChecked/> Blue</label>
-        </li>
+      <ol className="options options--color">
+        {Object.keys(options).map(value => {
+
+          const selected = value === option;
+          const classes = classNames('option', {
+            'is-selected': selected
+          });
+
+          return (
+            <li className={classes} key={value}>
+              <label><input type="radio" value={value} checked={selected}/> {options[value]}</label>
+            </li>
+          );
+
+        })}
       </ol>
     </div>
 
-    <button className="button button--primary" onClick={() => {}} disabled>Use now!</button>
+    <button className="button button--primary" disabled>Use now!</button>
 
   </form>
 );
 
 form.find('li')
-  .each(element => {
-    assert(element.hasText(/Red|Green|Blue/));
-    assert(element.hasClass('list__item'));
+  .each((element, index) => {
+
+    const text = Object.values(options)[index];
+    const value = Object.keys(options)[index];
+    const selected = value === option;
+
+    assert(element.hasKey(value));
+    assert(element.hasText(text));
+    assert.equal(element.hasClass('is-selected'), selected);
+
+    const input = element.find('input');
+    assert(input.hasProp('value', value));
+    assert(input.hasProp('checked', selected));
+
   })
 ;
 

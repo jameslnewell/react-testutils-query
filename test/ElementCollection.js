@@ -81,7 +81,6 @@ describe('ElementCollection', () => {
         <div><p>this is the <em>best</em> ice cream in the <em>whole</em> wide world</p></div>,
         <div><p>this is the <em>worst</em> ice cream in the <em>whole</em> wide world</p></div>
       ]);
-      //console.log(col.find('*'));
       expect(col.find('*').length).to.be.equal(6);
     });
 

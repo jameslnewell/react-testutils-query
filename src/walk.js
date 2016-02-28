@@ -37,6 +37,7 @@ function walk(node, opts, each) {
  * @param   {node}      node
  * @param   {object}    [opts]
  * @param   {boolean}   [opts.visitRoot=true]
+ * @param   {boolean}   [opts.maxDepth=null]
  * @param   {function}  each        Return true to stop walking
  * @returns {node}
  */
