@@ -21,10 +21,17 @@ function walk(node, opts, each) {
   depth += 1;
   if (React.isValidElement(node)) {
 
-    const childNodes = React.Children.toArray(node.props.children);
-    for (let i = 0; i < childNodes.length; ++i) {
-      if (walk(childNodes[i], {depth}, each)) {
-        return childNodes[i];
+    const childNodes = node.props.children;
+
+    if (Array.isArray(childNodes)) {
+      for (let i = 0; i < childNodes.length; ++i) {
+        if (walk(childNodes[i], {depth}, each)) {
+          return childNodes[i];
+        }
+      }
+    } else {
+      if (walk(childNodes, {depth}, each)) {
+        return childNodes;
       }
     }
 

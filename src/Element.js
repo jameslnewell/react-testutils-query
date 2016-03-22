@@ -11,18 +11,6 @@ export default class Element {
     this.node = element;
   }
 
-  type() {
-    return this.node.type;
-  }
-
-  key() {
-    return this.node.key;
-  }
-
-  ref() {
-    return this.node.ref;
-  }
-
   /**
    * Get descendant elements of the element, filtered by selector.
    * @param   {string} selector
@@ -39,6 +27,53 @@ export default class Element {
   //children(selector) {//TODO: optional selector
   //  return new QueryCollection(React.Children.toArray(this.node.props.children));
   //}
+
+  type() {
+    return this.node.type;
+  }
+
+  key() {
+    return this.node.key;
+  }
+
+  ref() {
+    return this.node.ref;
+  }
+
+  /**
+   * Get the value of a property on the element.
+   * @param   {string} name
+   * @returns {*}
+   */
+  prop(name) {
+    return this.node.props[name];
+  }
+
+  /**
+   * Get an array of class names applied to the element.
+   * @returns {Array<string>}
+   */
+  classes() {
+    let classes = [];
+    if (this.node.props.className) {
+      classes = this.node.props.className.split(/\s+/);
+    }
+    return classes;
+  }
+
+  /**
+   * Get the text contents of the element.
+   * @returns {string}
+   */
+  text() {
+    let text = '';
+    walk(this.node, node => {
+      if (typeof node === 'string') {
+        text += node;
+      }
+    });
+    return text;
+  }
 
   /**
    * Get the HTML contents of the element.
@@ -61,40 +96,8 @@ export default class Element {
     }
   }
 
-  /**
-   * Get the text contents of the element.
-   * @returns {string}
-   */
-  text() {
-    let text = '';
-    walk(this.node, node => {
-      if (typeof node === 'string') {
-        text += node;
-      }
-    });
-    return text;
-  }
-
-  /**
-   * Check whether the element contains the specified text substring/pattern.
-   * @param   {string|RegExp} substring
-   * @returns {boolean}
-   */
-  hasText(substring) {
-    if (substring instanceof RegExp) {
-      return substring.test(this.text());
-    } else {
-      return this.text().indexOf(substring) !== -1;
-    }
-  }
-
-  /**
-   * Get the value of a property on the element.
-   * @param   {string} name
-   * @returns {*}
-   */
-  prop(name) {
-    return this.node.props[name];
+  hasKey(key) {
+    return this.key() === key;
   }
 
   /**
@@ -109,18 +112,6 @@ export default class Element {
     } else {
       return this.prop(name) == value; //eslint-disable-line
     }
-  }
-
-  /**
-   * Get an array of class names applied to the element.
-   * @returns {Array<string>}
-   */
-  classes() {
-    let classes = [];
-    if (this.node.props.className) {
-      classes = this.node.props.className.split(/\s+/);
-    }
-    return classes;
   }
 
   /**
@@ -139,6 +130,19 @@ export default class Element {
     }
 
     return true;
+  }
+
+  /**
+   * Check whether the element contains the specified text substring/pattern.
+   * @param   {string|RegExp} substring
+   * @returns {boolean}
+   */
+  hasText(substring) {
+    if (substring instanceof RegExp) {
+      return substring.test(this.text());
+    } else {
+      return this.text().indexOf(substring) !== -1;
+    }
   }
 
 }
