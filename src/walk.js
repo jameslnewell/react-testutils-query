@@ -29,10 +29,8 @@ function walk(node, opts, each) {
           return childNodes[i];
         }
       }
-    } else {
-      if (walk(childNodes, {depth}, each)) {
-        return childNodes;
-      }
+    } else if (walk(childNodes, {depth}, each)) {
+      return childNodes;
     }
 
   }
