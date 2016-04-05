@@ -19,6 +19,17 @@ describe('Element', () => {
       expect(col.find('em').length).to.be.equal(2);
     });
 
+    it('should find every descendant of the element', () => {
+      const html = new Element(
+        <html>
+          <head>
+            <title>Foobar</title>
+          </head>
+        </html>
+      );
+      expect(html.find('title').length).to.be.equal(1);
+    });
+
   });
 
   describe('.type()', () => {

@@ -1,5 +1,24 @@
 import React from 'react';
 
+/**
+ * Walk an array of child nodes
+ * @param   {node|Array<node>}  node
+ * @param   {object}            opts
+ * @param   {function}          each
+ * @returns {node}
+ */
+function walkChildNodes(childNodes, opts, each) {
+  const {depth} = opts;
+  if (Array.isArray(childNodes)) {
+    for (let i = 0; i < childNodes.length; ++i) {
+      if (walk(childNodes[i], {depth}, each)) {
+        return childNodes[i];
+      }
+    }
+  } else if (walk(childNodes, {depth}, each)) {
+    return childNodes;
+  }
+}
 
 /**
  * Walk a tree of nodes
@@ -18,21 +37,12 @@ function walk(node, opts, each) {
     }
   }
 
+  //I can't remember why I didn't use React.Children.toArray() - it broke stuff though
   depth += 1;
   if (React.isValidElement(node)) {
-
-    const childNodes = node.props.children;
-
-    if (Array.isArray(childNodes)) {
-      for (let i = 0; i < childNodes.length; ++i) {
-        if (walk(childNodes[i], {depth}, each)) {
-          return childNodes[i];
-        }
-      }
-    } else if (walk(childNodes, {depth}, each)) {
-      return childNodes;
-    }
-
+    walkChildNodes(node.props.children, {depth}, each);
+  } else if (Array.isArray(node)) {
+    walkChildNodes(node, {depth}, each);
   }
 
 }
@@ -42,7 +52,7 @@ function walk(node, opts, each) {
  * @param   {node}      node
  * @param   {object}    [opts]
  * @param   {boolean}   [opts.visitRoot=true]
- * @param   {boolean}   [opts.maxDepth=null]
+ * //@param   {boolean}   [opts.maxDepth=null]
  * @param   {function}  each        Return true to stop walking
  * @returns {node}
  */
