@@ -2,21 +2,21 @@ import React from 'react';
 
 /**
  * Walk an array of child nodes
- * @param   {node|Array<node>}  node
+ * @param   {node|Array<node>}  nodes
  * @param   {object}            opts
  * @param   {function}          each
  * @returns {node}
  */
-function walkChildNodes(childNodes, opts, each) {
+function walkChildNodes(nodes, opts, each) {
   const {depth} = opts;
-  if (Array.isArray(childNodes)) {
-    for (let i = 0; i < childNodes.length; ++i) {
-      if (walk(childNodes[i], {depth}, each)) {
-        return childNodes[i];
+  if (Array.isArray(nodes)) {
+    for (let i = 0; i < nodes.length; ++i) {
+      if (walk(nodes[i], {depth}, each)) { //eslint-disable-line no-use-before-define
+        return nodes[i];
       }
     }
-  } else if (walk(childNodes, {depth}, each)) {
-    return childNodes;
+  } else if (walk(nodes, {depth}, each)) { //eslint-disable-line no-use-before-define
+    return nodes;
   }
 }
 
