@@ -28,7 +28,19 @@ export default function(selector) {
     ;
   }
 
-  //TODO: attributes
+  //attributes
+  const attributeRE = /\[([^\[\]=]+)(?:=([a-z]+))?\]/;
+  let attributesMatch = selector.match(attributeRE);
+  if (attributesMatch) {
+    result.attributes = [];
+    while (attributesMatch) {
+
+      attributesMatch = selector.match(attributeRE);
+
+    }
+
+    console.log(attributesMatch);
+  }
 
   //TODO: first-child etc
 
