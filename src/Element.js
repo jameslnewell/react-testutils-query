@@ -54,11 +54,11 @@ export default class Element {
    * @returns {Array<string>}
    */
   classes() {
-    let classes = [];
+    let classnames = [];
     if (this.node.props.className) {
-      classes = this.node.props.className.split(/\s+/);
+      classnames = this.node.props.className.split(/\s+/);
     }
-    return classes;
+    return classnames;
   }
 
   /**
@@ -66,13 +66,13 @@ export default class Element {
    * @returns {string}
    */
   text() {
-    let text = '';
+    let content = '';
     walk(this.node, node => {
       if (typeof node === 'string') {
-        text += node;
+        content += node;
       }
     });
-    return text;
+    return content;
   }
 
   /**
@@ -143,6 +143,10 @@ export default class Element {
     } else {
       return this.text().indexOf(substring) !== -1;
     }
+  }
+
+  toString() {
+    return this.html();
   }
 
 }

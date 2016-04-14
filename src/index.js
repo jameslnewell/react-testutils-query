@@ -1,6 +1,4 @@
-import match from './src/match';
-import queryAll from './src/queryAll';
-import Element from './src/Element';
+import Element from './Element';
 
 /**
  * Return a collection of elements that match the selector
@@ -11,8 +9,8 @@ import Element from './src/Element';
 export default function(selector, element) {
 
   if (arguments.length === 1) {
-    element = selector;
-    selector = null;
+    element = selector; //eslint-disable-line no-param-reassign
+    selector = null; //eslint-disable-line no-param-reassign
   } else if (arguments.length === 0) {
     throw new Error('react-testutils-query: Called without an element.');
   }
@@ -24,4 +22,4 @@ export default function(selector, element) {
   }
 
   return wrapper;
-};
+}
