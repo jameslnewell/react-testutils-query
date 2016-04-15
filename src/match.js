@@ -8,6 +8,10 @@ import parse from './parse';
  */
 export default function(selector) {
 
+  if (typeof selector === 'string' && selector.length === 0) {
+    throw new Error('The provided selector is empty.');
+  }
+
   if (typeof selector === 'function') {
     return function(node) {
       return React.isValidElement(node) && node.type === selector;

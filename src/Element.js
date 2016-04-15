@@ -17,11 +17,8 @@ export default class Element {
    * @returns {ElementCollection}
    */
   find(selector) {
-    if (typeof selector === 'string' && selector.length > 0) {
-      return new ElementCollection(queryAll(this.node, match(selector)));
-    } else {
-      return new ElementCollection([]);
-    }
+    return new ElementCollection(queryAll(this.node, match(selector)));
+
   }
 
   //children(selector) {//TODO: optional selector

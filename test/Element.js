@@ -12,14 +12,14 @@ describe('Element', () => {
       expect(col.find('*').length).to.be.equal(3);
     });
 
-    it('should find every descendant of the element', () => {
+    it('should find elements 1 level deep', () => {
       const col = new Element(
         <p>this is the <em>worst</em> ice cream in the <em>whole</em> wide world</p>
       );
       expect(col.find('em').length).to.be.equal(2);
     });
 
-    it('should find every descendant of the element', () => {
+    it('should find elements 2 levels deep', () => {
       const html = new Element(
         <html>
           <head>
@@ -28,6 +28,24 @@ describe('Element', () => {
         </html>
       );
       expect(html.find('title').length).to.be.equal(1);
+    });
+
+    it('should find react components', () => {
+
+      function Foo() {
+        return <div class="foo"/>
+      }
+
+      const html = new Element(
+        <div>
+          <div>
+            <Foo/>
+          </div>
+        </div>
+      );
+
+      expect(html.find(Foo).length).to.be.equal(1);
+
     });
 
   });
