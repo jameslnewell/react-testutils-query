@@ -20,7 +20,7 @@ export default function(selector) {
   }
 
   //classes
-  const classesMatch = selector.match(/(\.([a-zA-Z0-9\-]+))+/);
+  const classesMatch = selector.match(/(\.([a-zA-Z0-9\-_]+))+/);
   if (classesMatch) {
     result.classes = classesMatch[0]
       .split('.')
@@ -29,18 +29,18 @@ export default function(selector) {
   }
 
   //attributes
-  const attributeRE = /\[([^\[\]=]+)(?:=([a-z]+))?\]/;
-  let attributesMatch = selector.match(attributeRE);
-  if (attributesMatch) {
-    result.attributes = [];
-    while (attributesMatch) {
-
-      attributesMatch = selector.match(attributeRE);
-
-    }
-
-    console.log(attributesMatch);
-  }
+  //const attributeRE = /\[([^\[\]=]+)(?:=([a-z]+))?\]/;
+  //let attributesMatch = selector.match(attributeRE);
+  //if (attributesMatch) {
+  //  result.attributes = [];
+  //  while (attributesMatch) {
+  //
+  //    attributesMatch = selector.match(attributeRE);
+  //
+  //  }
+  //
+  //  console.log(attributesMatch);
+  //}
 
   //TODO: first-child etc
 
