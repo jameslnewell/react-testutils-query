@@ -86,12 +86,23 @@ export default class ElementCollection {
 
   /**
    * For every element in the collection, find every descendant element that matches the selector
-   * @param   {string} selector
+   * @param   {string} [selector]
    * @returns {ElementCollection}
    */
-  find(selector) {
+  find(selector = '*') {
     return new ElementCollection(flatten(
       this.map(element => element.find(selector).toArray())
+    ));
+  }
+
+  /**
+   * For every element in the collection, find every descendant element that matches the selector
+   * @param   {string} [selector]
+   * @returns {ElementCollection}
+   */
+  children(selector = '*') {
+    return new ElementCollection(flatten(
+      this.map(element => element.children(selector).toArray())
     ));
   }
 

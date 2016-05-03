@@ -50,6 +50,22 @@ describe('Element', () => {
 
   });
 
+  describe('.children()', () => {
+
+    it('should only return immediate children', () => {
+      const parent = new Element(
+        <ul>
+          <li>I <b>&lt;3</b> pizza</li>
+          <li>I <b>&lt;3</b> chocolate</li>
+        </ul>
+      );
+      const children = parent.children();
+      expect(children.length).to.be.equal(2);
+      children.each(element => expect(element.type()).to.be.equal('li'));
+    });
+
+  });
+
   describe('.type()', () => {
 
     it('should be <div/>', () => {

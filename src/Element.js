@@ -12,18 +12,22 @@ export default class Element {
   }
 
   /**
-   * Get descendant elements of the element, filtered by selector.
-   * @param   {string} selector
+   * Get the descendant elements of the element, filtered by selector.
+   * @param   {string} [selector]
    * @returns {ElementCollection}
    */
-  find(selector) {
-    return new ElementCollection(queryAll(this.node, match(selector)));
-
+  find(selector = '*') {
+    return new ElementCollection(queryAll(this.node, {}, match(selector)));
   }
 
-  //children(selector) {//TODO: optional selector
-  //  return new QueryCollection(React.Children.toArray(this.node.props.children));
-  //}
+  /**
+   * Get the children elements of the element, filtered by selector.
+   * @param   {string} [selector]
+   * @returns {ElementCollection}
+   */
+  children(selector = '*') {
+    return new ElementCollection(queryAll(this.node, {maxDepth: 1}, match(selector)));
+  }
 
   type() {
     return this.node.type;

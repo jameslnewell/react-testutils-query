@@ -51,4 +51,49 @@ describe('walk()', () => {
 
   });
 
+  it('should only visit one level deep', () => {
+
+    const html = (
+      <div>
+        <label><input/> A) <span>...</span></label>
+        <label><input/> B) <span>...</span></label>
+      </div>
+    );
+
+    walk(html, {maxDepth: 1}, (node, {depth}) => {
+      expect(depth).to.be.below(2);
+    });
+
+  });
+
+  it('should only visit two levels deep', () => {
+
+    const html = (
+      <div>
+        <label><input/> A) <span>...</span></label>
+        <label><input/> B) <span>...</span></label>
+      </div>
+    );
+
+    walk(html, (node, {depth}) => {
+      expect(depth).to.be.below(4);
+    });
+
+  });
+
+  it('should visit every level', () => {
+
+    const html = (
+      <div>
+        <label><input/> A) <span>...</span></label>
+        <label><input/> B) <span>...</span></label>
+      </div>
+    );
+
+    walk(html, (node, {depth}) => {
+      expect(depth).to.be.below(4);
+    });
+
+  });
+
 });

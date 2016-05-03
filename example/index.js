@@ -1,7 +1,7 @@
 
 import React from 'react';
 import assert from 'assert';
-import $ from '..';
+import $ from '../src';
 import classNames from 'classnames';
 
 const options = {
@@ -57,5 +57,7 @@ form.find('li')
 
   })
 ;
+
+assert(form.children().length === 2);
 
 assert(form.find('button').hasProp('disabled'));

@@ -94,6 +94,26 @@ describe('ElementCollection', () => {
 
   });
 
+  describe('.children()', () => {
+
+    it('should only return immediate children', () => {
+      const parent = new ElementCollection([
+        <ul>
+          <li>I <b>&lt;3</b> pizza</li>
+          <li>I <b>&lt;3</b> chocolate</li>
+        </ul>,
+        <ul>
+          <li>I <b>&lt;3</b> coke</li>
+          <li>I <b>&lt;3</b> bourbon</li>
+        </ul>
+      ]);
+      const children = parent.children();
+      expect(children.length).to.be.equal(4);
+      children.each(element => expect(element.type()).to.be.equal('li'));
+    });
+
+  });
+
   describe('.each()', () => {
 
     it('should call the callback for each element', () => {

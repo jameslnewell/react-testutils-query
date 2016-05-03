@@ -2,7 +2,7 @@
   "name": "react-testutils-query",
   "description": "Utility functions for accessing elements within a React Virtual-DOM tree.",
   "main": "./dist/index.js",
-  "version": "0.6.3",
+  "version": "0.7.0",
   "repository": {
     "type": "git",
     "url": "git remote add origin git@github.com:jameslnewell/react-testutils-query.git"
@@ -10,6 +10,7 @@
   "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.1.21",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
     "chai": "^3.4.1",

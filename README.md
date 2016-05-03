@@ -109,9 +109,27 @@ The last element in the collection.
 
 If the collection is empty.
 
-#### `.find(selector)`
+#### `.find(selector = '*')`
 
-Get descendant elements of every element in the collection, filtered by selector.
+Get the descendant elements of every element in the collection, filtered by selector.
+
+Supports:
+ - `*`
+ - `tag`
+ - `#id`
+ - `.class`
+
+**Parameters:**
+
+- `selector` - A `CSS`-like selector or `React` component
+
+**Returns:**
+
+A collection of elements.
+
+#### `.children(selector = '*')`
+
+Get the children elements of every element in the collection, filtered by selector.
 
 Supports:
  - `*`
@@ -186,7 +204,7 @@ Check whether the element first element in the collection has the specified clas
 
 **Parameters:**
 
-- `class` - The class name(s)
+- `name` - The class name(s)
 
 **Returns:**
 
@@ -208,9 +226,33 @@ An array of elements.
 
 Create a new element collection from a React element.
 
-#### `.find(selector)`
+#### `.find(selector = '*')`
 
 Get descendant elements of the element, filtered by selector.
+
+Supports:
+ - `*`
+ - `tag`
+ - `#id`
+ - `.class`
+
+**Parameters:**
+
+- `selector` - A `CSS`-like selector or `React` component
+
+**Returns:**
+
+A collection of elements.
+
+#### `.children(selector = '*')`
+
+Get the children elements of the element, filtered by selector.
+
+Supports:
+ - `*`
+ - `tag`
+ - `#id`
+ - `.class`
 
 **Parameters:**
 
@@ -283,7 +325,7 @@ Check whether the element has the specified class name(s).
 
 **Parameters:**
 
-- `class` - The class name(s)
+- `name` - The class name(s)
 
 **Returns:**
 
@@ -293,6 +335,12 @@ Whether the element has the specified class names.
 
 The wrapped React element.
 
+
+## Change log
+
+### 0.7.0
+
+- added `.children()` method
 
 ## To do:
 
