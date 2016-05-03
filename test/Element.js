@@ -33,7 +33,7 @@ describe('Element', () => {
     it('should find react components', () => {
 
       function Foo() {
-        return <div class="foo"/>
+        return <div class="foo"/>;
       }
 
       const html = new Element(

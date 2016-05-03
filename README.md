@@ -63,8 +63,6 @@ Get the descendant elements of the element, filtered by selector.
 
 A collection of elements.
 
-
-
 ### `ElementCollection`
 
 #### `.constructor(elements)`
@@ -115,6 +113,12 @@ If the collection is empty.
 
 Get descendant elements of every element in the collection, filtered by selector.
 
+Supports:
+ - `*`
+ - `tag`
+ - `#id`
+ - `.class`
+
 **Parameters:**
 
 - `selector` - A `CSS`-like selector or `React` component
@@ -155,7 +159,7 @@ Get the value of a property on the first element in the collection.
 
 The value of the property.
 
-#### `.hasProp(name, value)`
+#### `.hasProp(name, [value])`
 
 Check whether the first element in the collection has the specified property value.
 
