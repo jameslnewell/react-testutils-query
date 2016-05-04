@@ -20,7 +20,7 @@ export default function(selector) {
 
   const parsed = parse(selector);
 
-  return node => {
+  return node => { //eslint-disable-line complexity
 
     //nothing matches an empty selector
     if (selector === '') {
@@ -42,7 +42,7 @@ export default function(selector) {
       return false;
     }
 
-    //match the expected class(es) amongst the actual classes
+    //match the classes
     if (typeof parsed.classes !== 'undefined') {
 
       if (!node.props.className) {
@@ -57,6 +57,34 @@ export default function(selector) {
         }
       }
 
+    }
+
+    //match the attributes
+    if (typeof parsed.attributes !== 'undefined') {
+      const expected = parsed.attributes;
+      for (let i = 0; i < expected.length; ++i) {
+        const attribute = expected[i];
+
+        if (attribute.operator) {
+
+          switch (attribute.operator) {
+
+            case '=':
+              if (node.props[attribute.name] != attribute.value) { //eslint-disable-line eqeqeq
+                return false;
+              }
+              break;
+
+            default:
+              throw new Error(`Unsupported attribute operator "${attribute.operator}". Please submit a pull request!`);
+
+          }
+
+        } else if (!node.props[attribute.name]) {
+          return false;
+        }
+
+      }
     }
 
     return true;

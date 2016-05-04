@@ -1,3 +1,4 @@
+/* eslint-disable require-jsdoc, react/no-multi-comp */
 import React from 'react';
 import Element from '../src/Element';
 
@@ -33,7 +34,7 @@ describe('Element', () => {
     it('should find react components', () => {
 
       function Foo() {
-        return <div class="foo"/>;
+        return <div className="foo"/>;
       }
 
       const html = new Element(
@@ -127,6 +128,8 @@ describe('Element', () => {
 
   describe('.hasProp()', () => {
 
+    it('should...');
+
   });
 
   describe('.hasClass()', () => {
@@ -154,6 +157,8 @@ describe('Element', () => {
   });
 
   describe('.hasText()', () => {
+
+    it('should...');
 
   });
 

@@ -237,11 +237,7 @@ describe('ElementCollection', () => {
   });
 
   describe('.toArray()', () => {
-
-    it.skip('should return an array with the same elements and length', () => {
-
-    });
-
+    it('should return an array with the same elements and length');
   });
 
 });

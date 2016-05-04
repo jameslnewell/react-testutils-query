@@ -29,20 +29,35 @@ export default function(selector) {
   }
 
   //attributes
-  //const attributeRE = /\[([^\[\]=]+)(?:=([a-z]+))?\]/;
-  //let attributesMatch = selector.match(attributeRE);
-  //if (attributesMatch) {
-  //  result.attributes = [];
-  //  while (attributesMatch) {
-  //
-  //    attributesMatch = selector.match(attributeRE);
-  //
-  //  }
-  //
-  //  console.log(attributesMatch);
-  //}
+  const attributeRe = '([a-zA-Z0-9\-]+)(?:([\\~\\|\\^\\*\\$]?=)([^\\]]+))?';
+  const attributesRe = new RegExp(`\\[${attributeRe}\\]`, 'g');
+  const attributesMatches = selector.match(attributesRe);
+  if (attributesMatches) {
+    result.attributes = attributesMatches.map(attributeSelector => {
+      const attributeMatches = attributeSelector.match(new RegExp(attributeRe));
 
-  //TODO: first-child etc
+      const attribute = {name: attributeMatches[1]};
+
+      if (attributeMatches[3]) {
+
+        //extract the operator
+        attribute.operator = attributeMatches[2];
+
+        //extract and unquote the value
+        const valueMatches = attributeMatches[3].match(/^"([^"]+)"$|^'([^']+)'$/);
+        if (valueMatches) {
+          attribute.value = valueMatches[1] || valueMatches[2];
+        } else {
+          attribute.value = attributeMatches[3];
+        }
+
+      }
+
+      return attribute;
+    });
+  }
+
+  //TODO: :first-child etc
 
   return result;
 }

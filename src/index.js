@@ -1,4 +1,4 @@
-import Element from './Element';
+import ElementCollection from './ElementCollection';
 
 /**
  * Return a collection of elements that match the selector
@@ -15,7 +15,7 @@ export default function(selector, element) {
     throw new Error('react-testutils-query: Called without an element.');
   }
 
-  const wrapper = new Element(element);
+  const wrapper = new ElementCollection([].concat(element));
 
   if (selector) {
     return wrapper.find(selector);

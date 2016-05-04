@@ -1,6 +1,7 @@
 {
   "rules": {
-    "no-unused-expressions": 0 //for expect
+    "no-unused-expressions": 0, //because chai's expect
+    "import/no-named-as-default": 0 //beacause parse errors in module
   },
   "extends": "jameslnewell/react"
 }

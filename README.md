@@ -21,13 +21,13 @@ const form = $(
       <label>Favourite color:</label>
       <ol className="list list--color">
         <li className="list__item">
-          <label><input type="radio" value="red"/> Red</label>
+          <label><input type="radio" name="color" value="red"/> Red</label>
         </li>
         <li className="list__item">
-          <label><input type="radio" value="green"/> Green</label>
+          <label><input type="radio" name="color" value="green"/> Green</label>
         </li>
         <li className="list__item">
-          <label><input type="radio" value="blue" defaultChecked/> Blue</label>
+          <label><input type="radio" name="color" value="blue" defaultChecked/> Blue</label>
         </li>
       </ol>
     </div>
@@ -50,40 +50,20 @@ assert(form.find('button').hasProp('disabled'));
 
 ## API
 
-### `$(selector, element)`
+### `$([selector], element)`
 
 Get the descendant elements of the element, filtered by selector.
 
 **Parameters:**
 
-- `selector` - A `CSS`-like selector or `React` component
-- `element` - A `React` element
+- `selector : string|ReactComponent` - A `CSS`-like selector or `React` component
+- `element : ReactElement|array` - The `React` element(s)
 
 **Returns:**
 
 A collection of elements.
 
-### `ElementCollection`
-
-#### `.constructor(elements)`
-
-Create a new collection of elements from an array of elements.
-
-#### `.at(index)`
-
-Get the element at the specified index in the collection.
-
-**Parameters:**
-
-- `index` - The index
-
-**Returns:**
-
-An element.
-
-**Throws:**
-
-If the index is out of bounds.
+### ElementCollection
 
 #### `.first()`
 
@@ -109,19 +89,37 @@ The last element in the collection.
 
 If the collection is empty.
 
+#### `.at(index)`
+
+Get the element at the specified index in the collection.
+
+**Parameters:**
+
+- `index : number` - The index
+
+**Returns:**
+
+An element.
+
+**Throws:**
+
+If the index is out of bounds.
+
 #### `.find(selector = '*')`
 
 Get the descendant elements of every element in the collection, filtered by selector.
 
-Supports:
- - `*`
- - `tag`
- - `#id`
- - `.class`
 
 **Parameters:**
 
-- `selector` - A `CSS`-like selector or `React` component
+- `selector : string|ReactComponent` - A `CSS`-like selector or `React` component
+
+    Supports:
+     - `*`
+     - `tag`
+     - `#id`
+     - `.class`
+     - `[attr][attr=value]`
 
 **Returns:**
 
@@ -131,15 +129,17 @@ A collection of elements.
 
 Get the children elements of every element in the collection, filtered by selector.
 
-Supports:
- - `*`
- - `tag`
- - `#id`
- - `.class`
-
 **Parameters:**
 
-- `selector` - A `CSS`-like selector or `React` component
+- `selector : string|ReactComponent` - A `CSS`-like selector or `React` component
+
+    Supports:
+     - `*`
+     - `tag`
+     - `#id`
+     - `.class`
+     - `[attr][attr=value]`
+
 
 **Returns:**
 
@@ -159,7 +159,7 @@ Check whether the first element in the collection contains the specified text su
 
 **Parameters:**
 
-- `text` - The substring/pattern
+- `text : string|RegExp` - The substring/pattern
 
 **Returns:**
 
@@ -171,7 +171,7 @@ Get the value of a property on the first element in the collection.
 
 **Parameters:**
 
-- `name` - The name of the property
+- `name : string` - The name of the property
 
 **Returns:**
 
@@ -183,8 +183,8 @@ Check whether the first element in the collection has the specified property val
 
 **Parameters:**
 
-- `name` - The property name
-- `value` - The property value
+- `name : string` - The property name
+- `value : *` - The property value
 
 **Returns:**
 
@@ -204,7 +204,7 @@ Check whether the element first element in the collection has the specified clas
 
 **Parameters:**
 
-- `name` - The class name(s)
+- `name : string|array` - The class name(s)
 
 **Returns:**
 
@@ -218,133 +218,17 @@ Get the collection as an array of elements.
 
 An array of elements.
 
-
-
-### `Element`
-
-#### `.constructor(element)`
-
-Create a new element collection from a React element.
-
-#### `.find(selector = '*')`
-
-Get descendant elements of the element, filtered by selector.
-
-Supports:
- - `*`
- - `tag`
- - `#id`
- - `.class`
-
-**Parameters:**
-
-- `selector` - A `CSS`-like selector or `React` component
-
-**Returns:**
-
-A collection of elements.
-
-#### `.children(selector = '*')`
-
-Get the children elements of the element, filtered by selector.
-
-Supports:
- - `*`
- - `tag`
- - `#id`
- - `.class`
-
-**Parameters:**
-
-- `selector` - A `CSS`-like selector or `React` component
-
-**Returns:**
-
-A collection of elements.
-
-#### `.html()`
-
-Get the HTML contents of the element.
-
-#### `.text()`
-
-Get the text contents of the element.
-
-**Returns:**
-
-A string of text.
-
-#### `.hasText(text)`
-
-Check whether the element contains the specified text substring/pattern.
-
-**Parameters:**
-
-- `text` - The substring/pattern
-
-**Returns:**
-
-Whether the element contains the specified text substring/pattern.
-
-#### `.prop(name)`
-
-Get the value of a property on the element.
-
-**Parameters:**
-
-- `name` - The name of the property
-
-**Returns:**
-
-The value of the property.
-
-#### `.hasProp(name, value)`
-
-Check whether the element has the specified property value.
-
-**Parameters:**
-
-- `name` - The property name
-- `value` - The property value
-
-**Returns:**
-
-Whether the element has the specified property value.
-
-#### `.classes()`
-
-Get an array of class names applied to the element.
-
-**Returns:**
-
-An array of class names.
-
-#### `.hasClass(name)`
-
-Check whether the element has the specified class name(s).
-
-**Parameters:**
-
-- `name` - The class name(s)
-
-**Returns:**
-
-Whether the element has the specified class names.
-
-#### `.node`
-
-The wrapped React element.
-
-
 ## Change log
 
 ### 0.7.0
 
 - added `.children()` method
+- added support for children selectors e.g. `[disabled]`
+- changed `$()` to also take an array of elements
+- improved documentation
 
-## To do:
+## To do
 
-- attribute selectors e.g. `[disabled]`
 - multi-level selectors e.g. `.class-1 .class-2`
 - other jQuery methods
 

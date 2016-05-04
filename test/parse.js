@@ -31,13 +31,17 @@ describe('parse', () => {
 
   });
 
-  describe.skip('attributes', () => {
+  describe('attributes', () => {
 
     it('should be undefined when there are no attributes', () => {
       expect(parse('body')).to.not.have.property('attributes');
       expect(parse('#app')).to.not.have.property('attributes');
       expect(parse('.hero-panel')).to.not.have.property('attributes');
       expect(parse('body#app.hero-panel')).to.not.have.property('attributes');
+    });
+
+    it('should be undefined when the operator is invalid', () => {
+      expect(parse('[content!=foobar]')).to.not.have.property('attributes'); //TODO: should we allow invalid operators?
     });
 
     it('should be an array when there are one or more attributes', () => {
@@ -51,17 +55,41 @@ describe('parse', () => {
         .to.be.an('array')
         .to.have.property('length').to.be.equal(1)
       ;
-      expect(parse('[disabled][content=foobar]'))
+      expect(parse('[disabled][content*=foobar]'))
         .to.have.property('attributes')
         .to.be.an('array')
         .to.have.property('length').to.be.equal(2)
       ;
     });
 
-    it('should be ', () => {
-      expect(parse('[disabled]')).to.have.property('attributes');
-      expect(parse('[content=foobar]')).to.have.property('attributes');
+    it('should have a name', () => {
+      expect(parse('[disabled]').attributes[0]).to.have.property('name').to.be.equal('disabled');
+      expect(parse('[content=foobar]').attributes[0]).to.have.property('name').to.be.equal('content');
     });
+
+    it('should have an operator', () => {
+      expect(parse('[content=foobar]').attributes[0]).to.have.property('operator').to.be.equal('=');
+      expect(parse('[content~=foobar]').attributes[0]).to.have.property('operator').to.be.equal('~=');
+      expect(parse('[content|=foobar]').attributes[0]).to.have.property('operator').to.be.equal('|=');
+      expect(parse('[content^=foobar]').attributes[0]).to.have.property('operator').to.be.equal('^=');
+      expect(parse('[content$=foobar]').attributes[0]).to.have.property('operator').to.be.equal('$=');
+      expect(parse('[content*=foobar]').attributes[0]).to.have.property('operator').to.be.equal('*=');
+    });
+
+    it('should not have an operator', () => {
+      expect(parse('[disabled]').attributes[0]).to.not.have.property('operator');
+    });
+
+    it('should have a value', () => {
+      expect(parse('[content=foobar]').attributes[0]).to.have.property('value').to.be.equal('foobar');
+      expect(parse('[content="foobar"]').attributes[0]).to.have.property('value').to.be.equal('foobar');
+      expect(parse('[content=\'foobar\']').attributes[0]).to.have.property('value').to.be.equal('foobar');
+    });
+
+    it('should not have a value', () => {
+      expect(parse('[disabled]').attributes[0]).to.not.have.property('value');
+    });
+
 
   });
 

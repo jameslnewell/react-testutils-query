@@ -27,7 +27,7 @@ const form = $(
 
           return (
             <li className={classes} key={value}>
-              <label><input type="radio" value={value} checked={selected}/> {options[value]}</label>
+              <label><input type="radio" name="color" value={value} checked={selected}/> {options[value]}</label>
             </li>
           );
 
@@ -58,6 +58,18 @@ form.find('li')
   })
 ;
 
+assert.equal(
+  form.find('[name=color]').each(element => assert(element.type() === 'input')).length,
+  3
+);
+
+assert.equal(
+  form.find('[disabled]').length,
+  1
+);
+
 assert(form.children().length === 2);
 
 assert(form.find('button').hasProp('disabled'));
+
+console.log('OK!');
