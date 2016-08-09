@@ -175,8 +175,7 @@ describe('Element', () => {
           <button className="button button--primary">Click me!</button>
         </section>
       );
-      expect(el.toString()).to.be.equal('<section><button class="button button--primary">Click' +
-        ' me!</button></section>');
+      expect(el.toString()).to.be.equal('<section><button class="button button--primary">Click me!</button></section>');
     });
   });
 
