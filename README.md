@@ -341,10 +341,10 @@ The wrapped React element.
 ### 0.7.0
 
 - added `.children()` method
+- modified `.toString()` to return a string representation of the element itself
 
 ## To do:
 
-- attribute selectors e.g. `[disabled]`
 - multi-level selectors e.g. `.class-1 .class-2`
 - other jQuery methods
 

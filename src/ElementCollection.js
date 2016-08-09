@@ -171,4 +171,8 @@ export default class ElementCollection {
     return this.first().hasClass(...args);
   }
 
+  toString() {
+    return this.map(node => node.toString()).toString();
+  }
+
 }

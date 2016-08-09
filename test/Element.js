@@ -157,4 +157,27 @@ describe('Element', () => {
 
   });
 
+  describe('.html()', () => {
+    it('should return a HTML string representing the child nodes', () => {
+      const el = new Element(
+        <section>
+          <button className="button button--primary">Click me!</button>
+        </section>
+      );
+      expect(el.html()).to.be.equal('<button class="button button--primary">Click me!</button>');
+    });
+  });
+
+  describe('.toString()', () => {
+    it('should return a HTML string representing the node', () => {
+      const el = new Element(
+        <section>
+          <button className="button button--primary">Click me!</button>
+        </section>
+      );
+      expect(el.toString()).to.be.equal('<section><button class="button button--primary">Click' +
+        ' me!</button></section>');
+    });
+  });
+
 });
