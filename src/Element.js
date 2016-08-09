@@ -147,7 +147,7 @@ export default class Element {
   }
 
   toString() {
-    return this.html();
+    return renderToStaticMarkup(this.node);
   }
 
 }

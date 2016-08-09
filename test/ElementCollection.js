@@ -240,4 +240,21 @@ describe('ElementCollection', () => {
     it('should return an array with the same elements and length');
   });
 
+  describe('.toString()', () => {
+
+    it('should return a string', () => {
+
+      const col = new ElementCollection([
+        <div id="1"></div>,
+        <div id="2"></div>,
+        <div id="3"></div>,
+        <div id="4"></div>
+      ]);
+
+      expect(col.toString()).to.be.equal('<div id="1"></div>,<div id="2"></div>,<div id="3"></div>,<div id="4"></div>');
+
+    });
+
+  });
+
 });

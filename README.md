@@ -220,12 +220,16 @@ An array of elements.
 
 ## Change log
 
-### 0.7.0
+### 0.8.0
 
-- added `.children()` method
 - added support for children selectors e.g. `[disabled]`
 - changed `$()` to also take an array of elements
 - improved documentation
+
+### 0.7.0
+
+- added `.children()` method
+- modified `.toString()` to return a string representation of the element itself
 
 ## To do
 
