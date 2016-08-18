@@ -1,6 +1,5 @@
 import React from 'react';
 import $ from '../src/index';
-import Element from '../src/Element';
 import ElementCollection from '../src/ElementCollection';
 
 describe('index', () => {

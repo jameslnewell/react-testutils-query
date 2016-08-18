@@ -16,7 +16,7 @@ class Bar extends React.Component {
 describe('match', () => {
 
   it('should throw an error when the selector is empty', () => {
-    expect(() => match(undefined)).to.throw();
+    expect(() => match(undefined)).to.throw(); //eslint-disable-line no-undefined
   });
 
   it('should throw an error when the selector is empty', () => {
