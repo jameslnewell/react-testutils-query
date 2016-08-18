@@ -264,6 +264,7 @@ A HTML string.
 
 ### 0.9.0
 
+- added a notification when the provided selector is undefined (happens frequently when the passed thing is not a React component)
 - removed methods from `ElementCollection` which just proxy to individual `Element`s (`prop()`, `hasProp()`, `classes()`, `hasClass()`) because they're confusing and result in incorrect results when you've assumed they work on all the elements!
 - changed `.text()` to return the tex of all the `Element`s in the collection
 
