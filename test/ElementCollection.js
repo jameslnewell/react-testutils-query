@@ -236,6 +236,22 @@ describe('ElementCollection', () => {
 
   });
 
+  describe('.classes()', () => {
+    it('should concatenate and uniquify all the class names', () => {
+
+      const col = new ElementCollection([
+        <div className="a">a</div>,
+        <div className="b">b</div>,
+        <div className="c"></div>,
+        <div className="b"></div>,
+        <div className="d">c</div>
+      ]);
+
+      expect(col.classes()).to.be.deep.equal(['a', 'b', 'c', 'd']);
+
+    });
+  });
+
   describe('.text()', () => {
     it('should concatenate all the text', () => {
 

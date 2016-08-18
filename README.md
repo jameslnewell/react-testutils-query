@@ -145,6 +145,14 @@ Get the children elements of every element in the collection, filtered by select
 
 A collection of elements.
 
+### `.classes() : Array<string>`
+
+Get a list of class names applied to every element in the collection.
+
+**Returns:**
+
+An array of unique class names.
+
 #### `.text() : string`
 
 Get the text from all the elements in the collection (like `.textContent`).
@@ -261,6 +269,10 @@ A HTML string.
 #### `.hasText(value: string|RegExp) : string`
 
 ## Change log
+
+### 0.9.1
+
+- added missing `ElementCollection.classes()`
 
 ### 0.9.0
 

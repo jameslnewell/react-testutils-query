@@ -107,6 +107,23 @@ export default class ElementCollection {
   }
 
   /**
+   * Get the class names of every element in the collection as text.
+   * @returns {Array<string>}
+   */
+  classes() {
+    return this
+      .map(node => node.classes())
+      .reduce((allClassNames, elementClassNames) => allClassNames.concat(elementClassNames), [])
+      .reduce((classNames, className) =>{
+        if (classNames.indexOf(className) < 0 ) {
+          classNames.push(className);
+        }
+        return classNames;
+      }, [])
+    ;
+  }
+
+  /**
    * Get the contents of every element in the collection as text.
    * @returns {string}
    */
