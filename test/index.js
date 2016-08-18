@@ -9,20 +9,22 @@ describe('index', () => {
     expect(() => $()).to.throw;
   });
 
-  it('should return an Element when called with 1 argument', () => {
-    const element = $(<button>Click me!</button>);
-    expect(element).to.be.instanceOf(Element);
+  it('should return a collection when called with 1 argument', () => {
+    const collection = $(<button>Click me!</button>);
+    expect(collection).to.be.instanceOf(ElementCollection);
+    expect(collection.length).to.be.equal(1);
   });
 
   it('should return a collection when called with 2 arguments', () => {
-    const elements = $('li',
+    const collection = $('li',
       <ul>
         <li>#1</li>
         <li>#2</li>
         <li>#3</li>
       </ul>
     );
-    expect(elements).to.be.instanceOf(ElementCollection);
+    expect(collection).to.be.instanceOf(ElementCollection);
+    expect(collection.length).to.be.equal(3);
   });
 
 });

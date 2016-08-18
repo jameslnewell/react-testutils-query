@@ -13,7 +13,7 @@ class Bar extends React.Component {
   }
 }
 
-describe.only('match', () => {
+describe('match', () => {
 
   it('should throw an error when the selector is empty', () => {
     expect(() => match('')).to.throw();

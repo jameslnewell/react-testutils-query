@@ -107,6 +107,22 @@ export default class ElementCollection {
   }
 
   /**
+   * Get the contents of every element in the collection as text.
+   * @returns {string}
+   */
+  text() {
+    return this.map(node => node.text()).join('');
+  }
+
+  /**
+   * Return all of the elements as a HTML string
+   * @returns {string}
+   */
+  toString() {
+    return this.map(node => node.toString()).toString();
+  }
+
+  /**
    * Return all of the elements as an array
    * @returns {Array<Element>}
    */
@@ -116,63 +132,6 @@ export default class ElementCollection {
       array.push(this[i]);
     }
     return array;
-  }
-
-  //============= PROXY FUNCTIONS =============
-
-  /**
-   * Get the text contents of the first element in the collection.
-   * @returns {string}
-   */
-  text(...args) {
-    return this.first().text(...args);
-  }
-
-  /**
-   * Check whether the first element in the collection contains the specified text
-   * @param   {string} text
-   * @returns {boolean}
-   */
-  hasText(...args) {
-    return this.first().hasText(...args);
-  }
-
-  /**
-   * @param   {string} name
-   * @returns {*}
-   */
-  prop(...args) {
-    return this.first().prop(...args);
-  }
-
-  /**
-   * Check whether the first element in the collection has the specified property
-   * @param   {string} name
-   * @param   {string} value
-   * @returns {boolean}
-   */
-  hasProp(...args) {
-    return this.first().hasProp(...args);
-  }
-
-  /**
-   * @returns {Array.<string>}
-   */
-  classes(...args) {
-    return this.first().classes(...args);
-  }
-
-  /**
-   * Check whether the first element in the collection contains the specified class(es)
-   * @param   {string|Array<string>} name
-   * @returns {boolean}
-   */
-  hasClass(...args) {
-    return this.first().hasClass(...args);
-  }
-
-  toString() {
-    return this.map(node => node.toString()).toString();
   }
 
 }

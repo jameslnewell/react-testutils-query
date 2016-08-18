@@ -50,7 +50,7 @@ assert(form.find('button').hasProp('disabled'));
 
 ## API
 
-### `$([selector], element)`
+### `$([selector], element) : ElementCollection`
 
 Get the descendant elements of the element, filtered by selector.
 
@@ -65,7 +65,7 @@ A collection of elements.
 
 ### ElementCollection
 
-#### `.first()`
+#### `.first() : Element`
 
 Get the first element in the collection.
 
@@ -77,7 +77,7 @@ The first element in the collection.
 
 If the collection is empty.
 
-#### `.last()`
+#### `.last() : Element`
 
 Get the last element in the collection.
 
@@ -89,7 +89,7 @@ The last element in the collection.
 
 If the collection is empty.
 
-#### `.at(index)`
+#### `.at(index) : Element`
 
 Get the element at the specified index in the collection.
 
@@ -105,7 +105,7 @@ An element.
 
 If the index is out of bounds.
 
-#### `.find(selector = '*')`
+#### `.find(selector = '*') : ElementCollection`
 
 Get the descendant elements of every element in the collection, filtered by selector.
 
@@ -125,7 +125,7 @@ Get the descendant elements of every element in the collection, filtered by sele
 
 A collection of elements.
 
-#### `.children(selector = '*')`
+#### `.children(selector = '*') : ElementCollection`
 
 Get the children elements of every element in the collection, filtered by selector.
 
@@ -145,80 +145,127 @@ Get the children elements of every element in the collection, filtered by select
 
 A collection of elements.
 
-#### `.text()`
+#### `.text() : string`
 
-Get the text contents of the first element in the collection.
+Get the text from all the elements in the collection (like `.textContent`).
 
 **Returns:**
 
 A string of text.
 
-#### `.hasText(text)`
+#### `.toString() : string`
 
-Check whether the first element in the collection contains the specified text substring/pattern.
-
-**Parameters:**
-
-- `text : string|RegExp` - The substring/pattern
+Get all the elements in the collection as a HTML string (like `.outerHTML`).
 
 **Returns:**
 
-Whether the first element in the collection contains the specified text substring/pattern.
+A HTML string.
 
-#### `.prop(name)`
+#### `.toArray() : Array<Element>`
 
-Get the value of a property on the first element in the collection.
-
-**Parameters:**
-
-- `name : string` - The name of the property
-
-**Returns:**
-
-The value of the property.
-
-#### `.hasProp(name, [value])`
-
-Check whether the first element in the collection has the specified property value.
-
-**Parameters:**
-
-- `name : string` - The property name
-- `value : *` - The property value
-
-**Returns:**
-
-Whether the first element in the collection has the specified property value.
-
-#### `.classes()`
-
-Get an array of class names applied to the first element in the collection.
-
-**Returns:**
-
-An array of class names.
-
-#### `.hasClass(name)`
-
-Check whether the element first element in the collection has the specified class name(s).
-
-**Parameters:**
-
-- `name : string|array` - The class name(s)
-
-**Returns:**
-
-Whether the first element in the collection has the specified class names.
-
-#### `.toArray()`
-
-Get the collection as an array of elements.
+Get all the elements in the collection as an array of elements.
 
 **Returns:**
 
 An array of elements.
 
+### Element
+
+#### `.find(selector = '*') : ElementCollection`
+
+Get the descendant elements of the element, filtered by selector.
+
+
+**Parameters:**
+
+- `selector : string|ReactComponent` - A `CSS`-like selector or `React` component
+
+    Supports:
+     - `*`
+     - `tag`
+     - `#id`
+     - `.class`
+     - `[attr][attr=value]`
+
+**Returns:**
+
+A collection of elements.
+
+#### `.children(selector = '*') : ElementCollection`
+
+Get the children elements of the element, filtered by selector.
+
+**Parameters:**
+
+- `selector : string|ReactComponent` - A `CSS`-like selector or `React` component
+
+    Supports:
+     - `*`
+     - `tag`
+     - `#id`
+     - `.class`
+     - `[attr][attr=value]`
+
+
+**Returns:**
+
+A collection of elements.
+
+### `.prop(name : string) : *`
+
+Get the value of a property on the element.
+
+**Returns:**
+
+The prop value if one exists, or `undefined`.
+
+### `.classes() : Array<string>`
+
+Get a list of class names applied to the element.
+
+**Returns:**
+
+An array of class names.
+
+#### `.text() : string`
+
+Get the text the element (like `.textContent`).
+
+**Returns:**
+
+A string of text.
+
+#### `.html() : string`
+
+Get the children elements as a HTML string (like `.innerHTML`).
+
+**Returns:**
+
+A string of text.
+
+#### `.toString() : string`
+
+Get the element as a HTML string (like `.outerHTML`).
+
+**Returns:**
+
+A HTML string.
+
+#### `.type() : string`
+#### `.key() : string`
+#### `.hasKey(key) : boolean`
+#### `.ref() : string`
+#### `.props() : object`
+#### `.hasProp(name: string, [value: *]) : string`
+#### `.hasClass(name: string) : string`
+#### `.hasText(value: string|RegExp) : string`
+
 ## Change log
+
+### 0.9.0
+
+- removed methods from `ElementCollection` which just proxy to individual `Element`s (`prop()`, `hasProp()`, `classes()`, `hasClass()`) because they're confusing and result in incorrect results when you've assumed they work on all the elements!
+- changed `.text()` to return the tex of all the `Element`s in the collection
 
 ### 0.8.0
 

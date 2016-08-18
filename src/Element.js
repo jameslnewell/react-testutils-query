@@ -41,6 +41,10 @@ export default class Element {
     return this.node.ref;
   }
 
+  props() {
+    return this.node.props;
+  }
+
   /**
    * Get the value of a property on the element.
    * @param   {string} name
@@ -51,7 +55,7 @@ export default class Element {
   }
 
   /**
-   * Get an array of class names applied to the element.
+   * Get a list of class names applied to the element.
    * @returns {Array<string>}
    */
   classes() {
@@ -63,7 +67,7 @@ export default class Element {
   }
 
   /**
-   * Get the text contents of the element.
+   * Get the contents of the element as text.
    * @returns {string}
    */
   text() {
@@ -77,7 +81,7 @@ export default class Element {
   }
 
   /**
-   * Get the HTML contents of the element.
+   * Get the contents of the element as HTML.
    * @returns {string}
    */
   html() {

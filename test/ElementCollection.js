@@ -236,6 +236,21 @@ describe('ElementCollection', () => {
 
   });
 
+  describe('.text()', () => {
+    it('should concatenate all the text', () => {
+
+      const col = new ElementCollection([
+        <div id="1">a</div>,
+        <div id="2">b</div>,
+        <div id="3"></div>,
+        <div id="4">c</div>
+      ]);
+
+      expect(col.text()).to.be.equal('abc');
+
+    });
+  });
+
   describe('.toArray()', () => {
     it('should return an array with the same elements and length');
   });
