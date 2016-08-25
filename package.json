@@ -2,7 +2,7 @@
   "name": "react-testutils-query",
   "description": "Utility functions for accessing elements within a React Virtual-DOM tree.",
   "main": "./dist/index.js",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "repository": {
     "type": "git",
     "url": "git remote add origin git@github.com:jameslnewell/react-testutils-query.git"

@@ -50,18 +50,136 @@ assert(form.find('button').hasProp('disabled'));
 
 ## API
 
-### `$([selector], element) : ElementCollection`
+### `$(element : object) : Element`
+
+Wrap a `react` element with methods for querying.
+
+**Parameters:**
+
+- `element : object` - The `React` element to wrap
+
+**Returns:**
+
+A wrapper element.
+
+### `$(elements : Array<object>) : ElementCollection`
+
+Wrap an array of `react` elements with methods for querying.
+
+**Parameters:**
+
+- `elements : Array<object>` - The `React` elements to wrap
+
+**Returns:**
+
+A collection of wrapper elements.
+
+
+### `$(selector, elements) : ElementCollection`
+
+Get the descendant elements of the element(s), filtered by selector.
+
+> This method is an alias for `$(elements).find(selector)` 
+
+**Parameters:**
+
+- `selector : string|React.Component` - A `CSS`-like selector or `React` component
+- `elements : object|Array<object>` - The `React` element(s)
+
+**Returns:**
+
+A collection of wrapper elements.
+
+### Element
+
+#### `.find(selector = '*') : ElementCollection`
 
 Get the descendant elements of the element, filtered by selector.
+
 
 **Parameters:**
 
 - `selector : string|ReactComponent` - A `CSS`-like selector or `React` component
-- `element : ReactElement|array` - The `React` element(s)
+
+    Supports:
+     - `*`
+     - `tag`
+     - `#id`
+     - `.class`
+     - `[attr][attr=value]`
 
 **Returns:**
 
-A collection of elements.
+A collection of wrapper elements.
+
+#### `.children(selector = '*') : ElementCollection`
+
+Get the children elements of the element, filtered by selector.
+
+**Parameters:**
+
+- `selector : string|ReactComponent` - A `CSS`-like selector or `React` component
+
+    Supports:
+     - `*`
+     - `tag`
+     - `#id`
+     - `.class`
+     - `[attr][attr=value]`
+
+
+**Returns:**
+
+A collection of wrapper elements.
+
+### `.prop(name : string) : *`
+
+Get the value of a property on the element.
+
+**Returns:**
+
+The prop value if one exists, or `undefined`.
+
+### `.classes() : Array<string>`
+
+Get a list of class names applied to the element.
+
+**Returns:**
+
+An array of class names.
+
+#### `.text() : string`
+
+Get the text the element (like `.textContent`).
+
+**Returns:**
+
+A string of text.
+
+#### `.html() : string`
+
+Get the children elements as a HTML string (like `.innerHTML`).
+
+**Returns:**
+
+A string of text.
+
+#### `.toString() : string`
+
+Get the element as a HTML string (like `.outerHTML`).
+
+**Returns:**
+
+A HTML string.
+
+#### `.type() : string`
+#### `.key() : string`
+#### `.hasKey(key) : boolean`
+#### `.ref() : string`
+#### `.props() : object`
+#### `.hasProp(name: string, [value: *]) : string`
+#### `.hasClass(name: string) : string`
+#### `.hasText(value: string|RegExp) : string`
 
 ### ElementCollection
 
@@ -123,7 +241,7 @@ Get the descendant elements of every element in the collection, filtered by sele
 
 **Returns:**
 
-A collection of elements.
+A collection of wrapper elements.
 
 #### `.children(selector = '*') : ElementCollection`
 
@@ -143,7 +261,7 @@ Get the children elements of every element in the collection, filtered by select
 
 **Returns:**
 
-A collection of elements.
+A collection of wrapper elements.
 
 ### `.classes() : Array<string>`
 
@@ -177,98 +295,13 @@ Get all the elements in the collection as an array of elements.
 
 An array of elements.
 
-### Element
-
-#### `.find(selector = '*') : ElementCollection`
-
-Get the descendant elements of the element, filtered by selector.
-
-
-**Parameters:**
-
-- `selector : string|ReactComponent` - A `CSS`-like selector or `React` component
-
-    Supports:
-     - `*`
-     - `tag`
-     - `#id`
-     - `.class`
-     - `[attr][attr=value]`
-
-**Returns:**
-
-A collection of elements.
-
-#### `.children(selector = '*') : ElementCollection`
-
-Get the children elements of the element, filtered by selector.
-
-**Parameters:**
-
-- `selector : string|ReactComponent` - A `CSS`-like selector or `React` component
-
-    Supports:
-     - `*`
-     - `tag`
-     - `#id`
-     - `.class`
-     - `[attr][attr=value]`
-
-
-**Returns:**
-
-A collection of elements.
-
-### `.prop(name : string) : *`
-
-Get the value of a property on the element.
-
-**Returns:**
-
-The prop value if one exists, or `undefined`.
-
-### `.classes() : Array<string>`
-
-Get a list of class names applied to the element.
-
-**Returns:**
-
-An array of class names.
-
-#### `.text() : string`
-
-Get the text the element (like `.textContent`).
-
-**Returns:**
-
-A string of text.
-
-#### `.html() : string`
-
-Get the children elements as a HTML string (like `.innerHTML`).
-
-**Returns:**
-
-A string of text.
-
-#### `.toString() : string`
-
-Get the element as a HTML string (like `.outerHTML`).
-
-**Returns:**
-
-A HTML string.
-
-#### `.type() : string`
-#### `.key() : string`
-#### `.hasKey(key) : boolean`
-#### `.ref() : string`
-#### `.props() : object`
-#### `.hasProp(name: string, [value: *]) : string`
-#### `.hasClass(name: string) : string`
-#### `.hasText(value: string|RegExp) : string`
-
 ## Change log
+
+### 0.10.0
+
+- changed `$()` to:
+  - return an `Element` when a single element is passed (as per `0.6.x` behaviour)
+  - return an `ElementCollection` when multiple elements are passed (as per `0.8-9` behaviour)
 
 ### 0.9.1
 

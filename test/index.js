@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from '../src/index';
+import Element from '../src/Element';
 import ElementCollection from '../src/ElementCollection';
 
 describe('index', () => {
@@ -8,10 +9,18 @@ describe('index', () => {
     expect(() => $()).to.throw;
   });
 
-  it('should return a collection when called with 1 argument', () => {
+  it('should return an element when called with a single element object', () => {
     const collection = $(<button>Click me!</button>);
+    expect(collection).to.be.instanceOf(Element);
+  });
+
+  it('should return a collect when called with a multiple element objects', () => {
+    const collection = $([
+      <button>Click #1</button>,
+      <button>Click #2</button>
+    ]);
     expect(collection).to.be.instanceOf(ElementCollection);
-    expect(collection.length).to.be.equal(1);
+    expect(collection.length).to.be.equal(2);
   });
 
   it('should return a collection when called with 2 arguments', () => {
